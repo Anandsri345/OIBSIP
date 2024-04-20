@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> The Number Guessing Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: blue;
+        }
+        
+        .container {
+            text-align: center;
+        }
+        
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hi This is The Number Guessing Game!</h1>
+        <p>Guess the right number from 1 to 100 within 6 attempts</p>
+        <input type="text" id="guessInput" placeholder="Guess any number">
+        <button onclick="checkGuess()">Submit</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function checkGuess() {
+            var guessInput = document.getElementById("guessInput");
+            var guess = parseInt(guessInput.value);
+            var resultText = document.getElementById("result");
+            var attempts = 6;
+            var secretNumber = Math.floor(Math.random() * 100) + 1;
+
+            while (true) {
+                attempts++;
+                
+                if (guess === secretNumber) {
+                    resultText.textContent = "Congratulations! You've guessed the number " + secretNumber + " correctly in " + attempts + " attempts.";
+                    break;
+                } else if (guess < secretNumber) {
+                    resultText.textContent = "Try a higher number,Try again!";
+                    break;
+                } else {
+                    resultText.textContent = "Try a lower number,Try again!";
+                    break;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

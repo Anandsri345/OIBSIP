@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATM Interface</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color:green;
+            color:blue;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: White;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome to the ATM!</h2>
+        <button onclick="checkBalance()">Check Balance</button><br>
+        <button onclick="deposit()">Deposit</button><br>
+        <button onclick="withdraw()">Withdraw</button><br>
+        <button onclick="exit()">Exit</button><br>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        function checkBalance() {
+            document.getElementById("message").textContent = "Your balance is: $1000";
+        }
+
+        function deposit() {
+            var depositAmount = prompt("Enter amount to deposit:");
+            if (depositAmount !== null && !isNaN(depositAmount)) {
+                var newBalance = parseFloat(depositAmount) + 1000;
+                document.getElementById("message").textContent = "Deposit successful. Your new balance is: $" + newBalance.toFixed(2);
+            } else {
+                document.getElementById("message").textContent = "Invalid input. Deposit failed.";
+            }
+        }
+
+        function withdraw() {
+            var withdrawAmount = prompt("Enter amount to withdraw:");
+            if (withdrawAmount !== null && !isNaN(withdrawAmount)) {
+                if (parseFloat(withdrawAmount) <= 1000) {
+                    var newBalance = 1000 - parseFloat(withdrawAmount);
+                    document.getElementById("message").textContent = "Withdrawal successful. Your new balance is: $" + newBalance.toFixed(2);
+                } else {
+                    document.getElementById("message").textContent = "Insufficient funds. Withdrawal failed.";
+                }
+            } else {
+                document.getElementById("message").textContent = "Invalid input. Withdrawal failed.";
+            }
+        }
+
+        function exit() {
+            document.getElementById("message").textContent = "Thank you for using the ATM. Goodbye!";
+        }
+    </script>
+</body>
+</html>
